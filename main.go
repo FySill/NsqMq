@@ -41,6 +41,8 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	nsqTopic   := nsqd.GetTopic()
   nsqAddress := nsqd.GetNsqdAddress();
 
+	*msg = "cf"
+
 	if "" == *msg {
       log.Fatal("ERROR: missing required 'msg' parameter");
   }

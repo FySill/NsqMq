@@ -7,7 +7,7 @@ import (
 )
 
 const (
-    nsqHostDefault = "127.0.0.1"
+    nsqHostDefault = "120.27.39.169"
     nsqPortDefault = 4150
     nsqTopicDefault = "topic_name"
     nsqChannelDefault = "ch"
@@ -89,4 +89,13 @@ func GetTopic () string {
     }
 
     return Topic
+}
+
+func GetChannel () (string) {
+
+    if "" == Channel {
+        log.Fatal("ERROR: missing required 'channel' parameter");
+    }
+
+    return Channel
 }
