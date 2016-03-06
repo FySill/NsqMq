@@ -6,7 +6,7 @@ import (
     "fmt"
     "github.com/bitly/go-nsq"
     "flag"
-     "github.com/rednut/nsq-cli/lib/nsqdflags"
+    nsqd "github.com/rednut"
  )
 
 
@@ -18,7 +18,7 @@ import (
 //    flag.StringVar(nsqChannel, "c", *nsqChannel, "nsqd channel")
 //}
 
-func main() {
+func main1() {
     flag.Parse()
 
     nsqd.CheckFlags()

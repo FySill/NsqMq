@@ -8,7 +8,7 @@ import (
 	"strconv"
   "github.com/bitly/go-nsq"
   "flag"
-  "github.com/rednut/nsq-cli/lib/nsqdflags"
+	nsqd "github.com/rednut"
 )
 
 var (
@@ -35,9 +35,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, fmt.Sprintf("home.html file error %v", err), 500)
 	}
-	username := r.PostFormValue("username")
-	pwd := r.PostFormValue("pwd")
-
 
 	flag.Parse()
 	nsqd.CheckFlags()
@@ -54,25 +51,21 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 
   config := nsq.NewConfig()
-  w, _ := nsq.NewProducer(nsqAddress, config)
+  writer, _ := nsq.NewProducer(nsqAddress, config)
 
 
-  err := w.Publish(nsqTopic, []byte(*msg))
-  if err != nil {
+  err1 := writer.Publish(nsqTopic, []byte(*msg))
+  if err1 != nil {
       log.Fatal("Could not connect ", err)
   }
 
-  w.Stop()
+  writer.Stop()
 
   fmt.Printf("DONE\n\n")
 	fmt.Fprintf(w, string(webpage))
 }
 
 func main() {
-
-
-
-
 	port := 8090
 	portstring := strconv.Itoa(port)
 
