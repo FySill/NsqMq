@@ -47,8 +47,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
       log.Fatal("ERROR: missing required 'msg' parameter");
   }
 
-
-
   fmt.Printf("PRODUCER: nsqd=%s, topic=%s, msg=%s\n", nsqAddress, nsqTopic, *msg)
 
 
